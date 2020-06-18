@@ -1,0 +1,52 @@
+{% extends 'backend/master/master.html' %}
+{% load static %}
+ {% block 'title' %}
+     Education List
+ {% endblock %}
+{% block 'sidebar' %}
+    {% include 'backend/component/sidebar.html' %}
+{% endblock %}
+{% block 'nav' %}
+    {% include 'backend/component/nav.html' %}
+{% endblock %}
+{% block 'body' %}
+    {% include 'backend/component/message.html' %}
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Degree</th>
+                <th>Program</th>
+                <th>Board</th>
+                <th>Institute</th>
+                <th>Graduation Year</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in educations %}
+                <tr>
+                    <td>{{ e.degree }}</td>
+                    <td>{{ e.program }}</td>
+                    <td>{{ e.board }}</td>
+                    <td>{{ e.institution }}</td>
+                    <td>{{ e.graduation_year }}</td>
+                    <td><a href="{% url 'edit_education' e.id %}"><button class="btn btn-warning"><i class="fa fa-edit"></i></button></a>
+                        <a href="{% url 'delete_education' e.id %}" onclick="return confirm('Are you sure to Delete?')"><button class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <thead>
+            <tr>
+                <th>SN</th>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
+{% block 'footer' %}
+    {% include 'backend/component/footer.html' %}
+{% endblock %}

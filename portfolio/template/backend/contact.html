@@ -1,0 +1,58 @@
+{% extends 'backend/master/master.html' %}
+{% load static %}
+ {% block 'title' %}
+ Contact List
+ {% endblock %}
+{% block 'sidebar' %}
+    {% include 'backend/component/sidebar.html' %}
+{% endblock %}
+{% block 'nav' %}
+    {% include 'backend/component/nav.html' %}
+{% endblock %}
+{% block 'body' %}
+    {% include 'backend/component/message.html' %}
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in contacts %}
+                <tr>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.email }}</td>
+                    <td>{{ s.phone_number }}</td>
+                    <td>{{ s.message }}</td>
+                    <td>{% if s.status == 1 %}
+                            <span>Read</span>
+                        {% else %}
+                            <span>Unread</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'update_status' s.id %}" onclick="return confirm('Mark as Read')"><button class="btn btn-warning" title="Mark Read"><i class="fa fa-eye"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <thead>
+            <tr>
+                 <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
+{% block 'footer' %}
+    {% include 'backend/component/footer.html' %}
+{% endblock %}

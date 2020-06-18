@@ -1,0 +1,62 @@
+{% extends 'backend/master/master.html' %}
+{% load static %}
+ {% block 'title' %}
+     Experience List
+ {% endblock %}
+{% block 'sidebar' %}
+    {% include 'backend/component/sidebar.html' %}
+{% endblock %}
+{% block 'nav' %}
+    {% include 'backend/component/nav.html' %}
+{% endblock %}
+{% block 'body' %}
+    {% include 'backend/component/message.html' %}
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Organization</th>
+                <th>Level</th>
+                <th>Responsibility</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Job Location</th>
+                <th>Work Hour</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in experiences %}
+                <tr>
+                    <td>{{ e.title }}</td>
+                    <td>{{ e.organization }}</td>
+                    <td>{{ e.level }}</td>
+                    <td>{{ e.responsibility }}</td>
+                    <td>{{ e.start_date }}</td>
+                    <td>{{ e.end_date }}</td>
+                    <td>{{ e.job_location }}</td>
+                    <td>{{ e.work_hour }}</td>
+                    <td><a href="{% url 'edit_experience' e.id %}"><button class="btn btn-warning"><i class="fa fa-edit"></i></button></a>
+                        <a href="{% url 'delete_experience' e.id %}" onclick="return confirm('Are you sure to Delete?')"><button class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Organization</th>
+                <th>Level</th>
+                <th>Responsibility</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Job Location</th>
+                <th>Work Hour</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
+{% block 'footer' %}
+    {% include 'backend/component/footer.html' %}
+{% endblock %}

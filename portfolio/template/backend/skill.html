@@ -1,0 +1,44 @@
+{% extends 'backend/master/master.html' %}
+{% load static %}
+ {% block 'title' %}
+ List Skill
+ {% endblock %}
+{% block 'sidebar' %}
+    {% include 'backend/component/sidebar.html' %}
+{% endblock %}
+{% block 'nav' %}
+    {% include 'backend/component/nav.html' %}
+{% endblock %}
+{% block 'body' %}
+    {% include 'backend/component/message.html' %}
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in skills %}
+                <tr>
+                    <td>{{ s.title }}</td>
+                    <td>{{ s.rating }}</td>
+                    <td><a href="{% url 'edit_skill' s.id %}"><button class="btn btn-warning"><i class="fa fa-edit"></i></button></a>
+                        <a href="{% url 'delete_skill' s.id %}" onclick="return confirm('Are you sure to Delete?')"><button class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
+{% block 'footer' %}
+    {% include 'backend/component/footer.html' %}
+{% endblock %}

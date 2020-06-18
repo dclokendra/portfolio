@@ -1,0 +1,22 @@
+side{% extends 'backend/master/master.html' %}
+{% load static %}
+ {% block 'title' %}
+ Dashboard
+ {% endblock %}
+{% block 'sidebar' %}
+    {% include 'backend/component/sidebar.html' %}
+{% endblock %}
+
+{% block 'nav' %}
+    {% include 'backend/component/nav.html' %}
+{% endblock %}
+
+{% block 'body' %}
+    {% include 'backend/component/message.html' %}
+
+{% endblock %}
+
+{% block 'footer' %}
+    {% include 'backend/component/footer.html' %}
+{% endblock %}
+
